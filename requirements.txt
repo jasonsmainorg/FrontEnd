@@ -1,2 +1,5 @@
-flask
+pymssql~=2.2.7
+Flask~=2.2.2
+Werkzeug~=3.0.3
 flask_login
+pyjwt
