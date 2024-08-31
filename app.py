@@ -1,14 +1,9 @@
 from flask import Flask, render_template, request, url_for, redirect #Hosting the webapp
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user #Session Management
-import os, csv #OS interaction for file storage
-import pymssql, hashlib #Connection to Azure and Password Hashin
-import jwt, uuid, datetime #JWT authentication with Tableau
+import os
 
 app = Flask(__name__)
 
-connectedAppClientId = os.environ['CONNECTED_APP_CLIENT_ID']
-connectedAppSecretKey = os.environ['CONNECTED_APP_SECRET_KEY']
-connectedAppSecretId = os.environ['CONNECTED_APP_SECRET_ID']
 
 app.config['SECRET_KEY'] = os.environ['APP_COOKIE_SECRET']
 
