@@ -32,6 +32,7 @@ def get_token():
     )
 
 @app.route('/')
+@app.route('/home')
 def index():
     return render_template("index.html", jwt=get_token())
 
