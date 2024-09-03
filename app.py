@@ -31,25 +31,9 @@ def get_token():
         }
     )
 
-@app.route('/login')
-def login():
-    return render_template("index.html", jwt=get_token())
-
-@app.route('/register')
-def register():
-    return render_template("index.html")
-    
-@app.route('/logout')
-def logout():
-    return render_template("index.html")
-
-@app.route('/home')
-def home():
-    return render_template("index.html")
-
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", jwt=get_token())
 
 if __name__ == "__main__":
     app.run(port=8080)
