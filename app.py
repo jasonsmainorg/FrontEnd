@@ -38,10 +38,27 @@ def get_token():
         print(f"An error occurred while generating the token: {e}")
         return None
 
+
 @app.route('/')
-@app.route('/home')
-def index():
-    return render_template("index.html", jwt=get_token())
+@app.route('/RegPrice')
+def DashBoard_1():
+    return render_template("DashBoard_1.html", jwt=get_token())
+
+@app.route('/HW')
+def DashBoard_2():
+    return render_template("DashBoard_2.html", jwt=get_token())
+
+@app.route('/PrVsFr')
+def DashBoard_3():
+    return render_template("DashBoard_3.html", jwt=get_token())
+
+@app.route('/COL_Adjusted')
+def DashBoard_4():
+    return render_template("DashBoard_4.html", jwt=get_token())
+
+@app.route('/Adoption')
+def DashBoard_5():
+    return render_template("DashBoard_5.html", jwt=get_token())
 
 if __name__ == "__main__":
     app.run(port=8080)
