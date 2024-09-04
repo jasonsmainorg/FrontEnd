@@ -13,8 +13,8 @@ connectedAppSecretKey = os.environ['CONNECTED_APP_SECRET_KEY']
 user = os.environ['TABLEAU_USER']
 
 def get_token():
-    return jwt.encode(
-        {
+    try:
+        payload = {
             "iss": connectedAppClientId,
             "exp": datetime.datetime.now(datetime.UTC) + datetime.timedelta(seconds=30),
             "jti": str(uuid.uuid4()),
@@ -22,14 +22,21 @@ def get_token():
             "sub": user,
             "scp": ["tableau:views:embed", "tableau:metrics:embed"],
             "Region": "East"
-        },
-        connectedAppSecretKey,
-        algorithm="HS256",
-        headers={
-            'kid': connectedAppSecretId,
-            'iss': connectedAppClientId
         }
-    )
+
+        token = jwt.encode(
+            payload,
+            connectedAppSecretKey,
+            algorithm="HS256",
+            headers={
+                'kid': connectedAppSecretId,
+                'iss': connectedAppClientId
+            }
+        )
+        return token
+    except Exception as e:
+        print(f"An error occurred while generating the token: {e}")
+        return None
 
 @app.route('/')
 @app.route('/home')
